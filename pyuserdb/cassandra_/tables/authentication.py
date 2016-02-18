@@ -5,7 +5,12 @@ from cassandra.cqlengine.models import Model
 from pyuserdb.cassandra_.usertypes.user import UserHasAccount
 
 
-class UserAuthenticationTable(Model):
+# TODO: Why not use a secondary index for username/authentication lookup?
+
+class AuthenticationUserTable(Model):
+    """
+    """
+    __table_name__ = 'authentication_user'
 
     username = columns.Text(primary_key=True)
     password = columns.Text()

@@ -3,6 +3,25 @@ from cassandra.cqlengine import columns
 from cassandra.cqlengine.usertype import UserType
 
 
+class UserState(object):
+    CREATED = 'created'
+    ACTIVE = 'active'
+    SUSPENDED = 'suspended'
+    DELETED = 'deleted'
+
+
+class PhoneNumberRole(object):
+    HOME = 'home'
+    WORK = 'work'
+    MOBILE = 'mobile'
+
+
+class PhoneNumberPhoneType(object):
+    LANDLINE = 'landline'
+    MOBILE = 'mobile'
+    SATELITE = 'satelite'
+
+
 class Address(UserType):
     role = columns.Text()
 
@@ -19,11 +38,11 @@ class Address(UserType):
 
 
 class PhoneNumber(UserType):
-    role = columns.Text()
-    phone_type = columns.Text()
-    country_code = columns.SmallInt()
-    number = columns.Integer()
-    extension = columns.Integer()
+    role = columns.Text(default='')
+    phone_type = columns.Text(default='')
+    country_code = columns.Text(default='')
+    number = columns.Text(default='')
+    extension = columns.Text(default='')
 
 
 class UserHasAccount(UserType):

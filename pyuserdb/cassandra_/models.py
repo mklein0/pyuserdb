@@ -25,7 +25,7 @@ class Account(tables_account.AccountTable):
             class_name, self.account_uuid, self.account_name)
 
 
-class UserAuthentication(tables_auth.UserAuthenticationTable):
+class AuthenticationUser(tables_auth.AuthenticationUserTable):
 
     def __repr__(self):
         class_name = class_to_name(type(self))
