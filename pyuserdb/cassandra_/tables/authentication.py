@@ -5,10 +5,13 @@ from cassandra.cqlengine.models import Model
 from pyuserdb.cassandra_.usertypes.user import UserHasAccount
 
 
-# TODO: Why not use a secondary index for username/authentication lookup?
-
 class AuthenticationUserTable(Model):
     """
+    Authentication Lookup Table to leverage scaling of primary keys in Cassandra. Secondary Keys are node local and
+    would require a full DC scan.
+
+    https://pantheon.io/blog/cassandra-scale-problem-secondary-indexes
+
     """
     __table_name__ = 'authentication_user'
 
@@ -21,4 +24,4 @@ class AuthenticationUserTable(Model):
     last_logged_in_at = columns.DateTime()
 
     # Authentication related flags
-    should_change_password = columns.Boolean(default=False)
+    property_should_change_password = columns.Boolean(default=False)

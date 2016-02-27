@@ -41,7 +41,7 @@ class OAuth2Client(tables_oauth2.OAuth2ClientTable):
             class_name, self.client_id)
 
 
-class OAuth2AuthorizationGrant(tables_oauth2.OAuth2AuthorizationGrantTable):
+class OAuth2GrantAuthorization(tables_oauth2.OAuth2GrantAuthorizationTable):
 
     def __repr__(self):
         class_name = class_to_name(type(self))
@@ -49,7 +49,7 @@ class OAuth2AuthorizationGrant(tables_oauth2.OAuth2AuthorizationGrantTable):
             class_name, self.authorization_code)
 
 
-class OAuth2RefreshToken(tables_oauth2.OAuth2RefreshTokenTable):
+class OAuth2TokenRefresh(tables_oauth2.OAuth2TokenRefreshTable):
 
     def __repr__(self):
         class_name = class_to_name(type(self))
@@ -57,7 +57,7 @@ class OAuth2RefreshToken(tables_oauth2.OAuth2RefreshTokenTable):
             class_name, self.refresh_token)
 
 
-class OAuth2AccessToken(tables_oauth2.OAuth2AccessTokenTable):
+class OAuth2TokenAccess(tables_oauth2.OAuth2TokenAccessTable):
 
     def __repr__(self):
         class_name = class_to_name(type(self))

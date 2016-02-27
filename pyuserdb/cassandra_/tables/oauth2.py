@@ -14,6 +14,7 @@ class OAuth2ClientTable(Model):
     client_secret = columns.Text()
     client_type = columns.Text(default=ClientType.MOBILE)
     redirect_uri = columns.Text()
+    redirect_uris = columns.List(columns.Text())
 
     home_page = columns.Text()
     email = columns.Text()
@@ -26,37 +27,37 @@ class OAuth2ClientTable(Model):
 
 # Temporary State 
 
-class OAuth2AuthorizationGrantTable(Model):
+class OAuth2GrantAuthorizationTable(Model):
     """
     """
-    __table_name__ = 'oauth2_authorization_grant'
+    __table_name__ = 'oauth2_grant_authorization'
 
     authorization_code = columns.Text(primary_key=True)
     client_id = columns.Text()
     user_uuid = columns.UUID()
 
-    created_at = columns.DateTime()
+    created_at = columns.DateTime(default=datetime.datetime.utcnow)
     valid_until = columns.DateTime()
 
     redirect_uri = columns.Text()
-    valid_until = columns.DateTime()
     scope = columns.List(columns.Text())
+    state = columns.Text()
 
 
-class OAuth2RefreshTokenTable(Model):
-    __table_name__ = 'oauth2_refresh_token'
+class OAuth2TokenRefreshTable(Model):
+    __table_name__ = 'oauth2_token_refresh'
 
     refresh_token = columns.Text(primary_key=True)
     client_id = columns.Text()
-    user_uuid = columns.Text()
+    user_uuid = columns.UUID()
 
     scope = columns.List(columns.Text())
     valid_until = columns.DateTime()
     access_token = columns.Text()
 
 
-class OAuth2AccessTokenTable(Model):
-    __table_name__ = 'oauth2_access_token'
+class OAuth2TokenAccessTable(Model):
+    __table_name__ = 'oauth2_token_access'
 
     access_token = columns.Text(primary_key=True)
     user_uuid = columns.UUID()

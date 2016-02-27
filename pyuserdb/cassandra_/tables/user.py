@@ -8,10 +8,11 @@ from cassandra.cqlengine.models import Model
 from pyuserdb.cassandra_.usertypes.user import UserState, PhoneNumber, UserHasAccount
 
 
-# TODO: Why not use a secondary index for username/authentication lookup?
-
 class UserTable(Model):
     """
+    Authoritative record on User Data. Authentication Lookup is handle via a separate table for performance reasons.
+
+    State flags like need to change password are held in authentication tables.
     """
     __table_name__ = "user"
 
